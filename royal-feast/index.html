@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Royal Feast — A luxury fine dining experience. Reserve your table today." />
+  <title>Royal Feast | Fine Dining Experience</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ══════════════════ LOADING SCREEN ══════════════════ -->
+<div id="loading-screen">
+  <div class="loader-logo">Royal Feast</div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  <div class="loader-tagline">A Culinary Journey Awaits</div>
+</div>
+
+<!-- ══════════════════ DARK MODE TOGGLE ══════════════════ -->
+<button id="dark-toggle" title="Toggle theme" aria-label="Toggle dark/light mode">
+  <i class="fas fa-moon"></i>
+</button>
+
+<!-- ══════════════════ SCROLL TO TOP ══════════════════ -->
+<button id="scroll-top" title="Back to top" aria-label="Scroll to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- ══════════════════ TOAST ══════════════════ -->
+<div id="toast-container" aria-live="polite"></div>
+
+<!-- ══════════════════ CART OVERLAY ══════════════════ -->
+<div class="cart-overlay" id="cart-overlay"></div>
+
+<!-- ══════════════════ CART SIDEBAR ══════════════════ -->
+<aside id="cart-sidebar" aria-label="Shopping cart">
+  <div class="cart-header">
+    <h3><i class="fas fa-shopping-bag" style="color:var(--gold);margin-right:10px;font-size:1rem;"></i>Your Order</h3>
+    <button class="cart-close" id="cart-close" aria-label="Close cart"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-empty" id="cart-empty" style="display:flex;">
+    <div class="empty-icon"><i class="fas fa-utensils"></i></div>
+    <p>Your cart is empty.<br>Add some delicious dishes!</p>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none;">
+    <div class="cart-subtotal" id="cart-subtotal"></div>
+    <div class="cart-total" id="cart-total"></div>
+    <button class="checkout-btn">Place Order &nbsp;<i class="fas fa-arrow-right"></i></button>
+  </div>
+</aside>
+
+<!-- ══════════════════ NAVBAR ══════════════════ -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <span class="nav-logo-main">Royal Feast</span>
+      <span class="nav-logo-sub">Fine Dining</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#reservation">Reservation</a></li>
+      <li><a href="#location">Location</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="cart-btn" id="cart-btn" aria-label="Open cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#hero">Home</a>
+  <a href="#about">About</a>
+  <a href="#menu">Menu</a>
+  <a href="#reservation">Reservation</a>
+  <a href="#location">Location</a>
+</div>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Est. 1998 &mdash; Michelin Starred</div>
+    <h1 class="hero-title">
+      Where Every Dish<br>
+      Tells a <span class="gold-text">Story</span>
+    </h1>
+    <p class="hero-tagline">
+      An unparalleled fine dining experience crafted with passion, artistry, and the world's finest ingredients.
+    </p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-gold"><i class="fas fa-utensils"></i> Explore Menu</a>
+      <a href="#reservation" class="btn-outline"><i class="fas fa-calendar-alt"></i> Reserve Table</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══════════════════ STATS ══════════════════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-number" data-target="25" data-suffix="+">0+</div>
+      <div class="stat-label">Years of Excellence</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-number" data-target="120" data-suffix="+">0+</div>
+      <div class="stat-label">Signature Dishes</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-number" data-target="3" data-suffix="">0</div>
+      <div class="stat-label">Michelin Stars</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-number" data-target="50" data-suffix="k+">0k+</div>
+      <div class="stat-label">Happy Guests</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ ABOUT ══════════════════ -->
+<section id="about">
+  <div class="section">
+    <div class="about-grid">
+      <!-- Images -->
+      <div class="about-image-wrap reveal">
+        <img
+          class="about-image-main"
+          src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=800&q=80&auto=format&fit=crop"
+          alt="Our head chef preparing a signature dish"
+          loading="lazy"
+        />
+        <img
+          class="about-image-accent"
+          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80&auto=format&fit=crop"
+          alt="Restaurant interior"
+          loading="lazy"
+        />
+        <div class="about-badge">
+          <span class="about-badge-year">25</span>
+          <span class="about-badge-text">Years of<br>Excellence</span>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="reveal reveal-delay-2">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">Crafted with <span>Passion</span>,<br>Served with Pride</h2>
+        <div class="divider"></div>
+        <p class="section-desc">
+          Founded in 1998 by Chef Isabelle Moreau, Royal Feast was born from a singular vision — to transform dining into an art form. Nestled in the heart of the city, our restaurant blends classical French technique with contemporary global flavors.
+        </p>
+        <p class="section-desc" style="margin-top:16px;">
+          Every plate that leaves our kitchen carries the weight of decades of tradition and the excitement of modern culinary innovation. We source only the finest seasonal ingredients from trusted local farms and global artisan producers.
+        </p>
+
+        <div class="about-features">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+            <div class="feature-text">
+              <h4>Farm to Table</h4>
+              <p>Seasonal, locally sourced ingredients</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-wine-glass-alt"></i></div>
+            <div class="feature-text">
+              <h4>Wine Cellar</h4>
+              <p>500+ curated international labels</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-award"></i></div>
+            <div class="feature-text">
+              <h4>Award Winning</h4>
+              <p>3 Michelin stars since 2008</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-users"></i></div>
+            <div class="feature-text">
+              <h4>Private Events</h4>
+              <p>Bespoke dining experiences</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:32px;">
+          <a href="#reservation" class="btn-gold">Book a Table <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FEATURED DISHES ══════════════════ -->
+<section id="featured" style="background:var(--black);">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="section-label">Chef's Selections</span>
+      <h2 class="section-title">Featured <span>Masterpieces</span></h2>
+      <div class="divider"></div>
+      <p class="section-desc">Handpicked by our Executive Chef — dishes that define the Royal Feast experience.</p>
+    </div>
+
+    <div class="featured-grid">
+
+      <!-- Card 1 -->
+      <div class="featured-card reveal">
+        <div class="featured-card-img">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80&auto=format&fit=crop" alt="Pan-Seared Duck Breast" loading="lazy" />
+          <div class="chef-badge"><i class="fas fa-star"></i> Chef's Special</div>
+        </div>
+        <div class="featured-card-body">
+          <div class="featured-card-name">Pan-Seared Duck Breast</div>
+          <p class="featured-card-desc">Glazed with aged cherry reduction, served with truffle-scented potato fondant and haricot vert.</p>
+          <div class="featured-card-footer">
+            <span class="featured-price">$58</span>
+            <button class="btn-gold" style="padding:10px 20px;font-size:0.72rem;" onclick="addToCart(101,'Pan-Seared Duck Breast',58,'https://images.unsplash.com/photo-1544025162-d76694265947?w=120&q=60')">
+              <i class="fas fa-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="featured-card reveal reveal-delay-1">
+        <div class="featured-card-img">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80&auto=format&fit=crop" alt="Lobster Thermidor" loading="lazy" />
+          <div class="chef-badge"><i class="fas fa-fire"></i> Most Loved</div>
+        </div>
+        <div class="featured-card-body">
+          <div class="featured-card-name">Lobster Thermidor</div>
+          <p class="featured-card-desc">Maine lobster with cognac cream, gruyère gratin, and a delicate saffron beurre blanc.</p>
+          <div class="featured-card-footer">
+            <span class="featured-price">$89</span>
+            <button class="btn-gold" style="padding:10px 20px;font-size:0.72rem;" onclick="addToCart(102,'Lobster Thermidor',89,'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=120&q=60')">
+              <i class="fas fa-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="featured-card reveal reveal-delay-2">
+        <div class="featured-card-img">
+          <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600&q=80&auto=format&fit=crop" alt="Dark Chocolate Soufflé" loading="lazy" />
+          <div class="chef-badge"><i class="fas fa-crown"></i> Signature</div>
+        </div>
+        <div class="featured-card-body">
+          <div class="featured-card-name">Dark Chocolate Soufflé</div>
+          <p class="featured-card-desc">Valrhona 70% dark chocolate, molten centre, paired with Tahitian vanilla bean ice cream.</p>
+          <div class="featured-card-footer">
+            <span class="featured-price">$32</span>
+            <button class="btn-gold" style="padding:10px 20px;font-size:0.72rem;" onclick="addToCart(103,'Dark Chocolate Soufflé',32,'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=120&q=60')">
+              <i class="fas fa-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ MENU ══════════════════ -->
+<section id="menu">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="section-label">Culinary Collection</span>
+      <h2 class="section-title">Our Full <span>Menu</span></h2>
+      <div class="divider"></div>
+      <p class="section-desc">From delicate starters to indulgent desserts — every dish is a celebration.</p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="menu-filters reveal">
+      <button class="filter-btn active" data-filter="all">All Dishes</button>
+      <button class="filter-btn" data-filter="starters">Starters</button>
+      <button class="filter-btn" data-filter="mains">Mains</button>
+      <button class="filter-btn" data-filter="desserts">Desserts</button>
+    </div>
+
+    <!-- Menu Grid -->
+    <div class="menu-grid">
+
+      <!-- STARTERS -->
+      <div class="menu-card reveal" data-category="starters">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=500&q=75&auto=format&fit=crop" alt="Beef Carpaccio" loading="lazy" />
+          <div class="menu-card-overlay">
+            <button class="quick-add" onclick="addToCart(1,'Beef Carpaccio',24,'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=120&q=60')">Quick Add</button>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-stars">★★★★★</div>
+          <div class="menu-card-name">Beef Carpaccio</div>
+          <p class="menu-card-desc">Wafer-thin Wagyu beef, shaved Parmesan, capers, truffle oil & rocket.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">$24</span>
+            <button class="add-to-cart-btn" onclick="addToCart(1,'Beef Carpaccio',24,'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=120&q=60')" aria-label="Add to cart"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card reveal reveal-delay-1" data-category="starters">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=75&auto=format&fit=crop" alt="French Onion Soup" loading="lazy" />
+          <div class="menu-card-overlay">
+            <button class="quick-add" onclick="addToCart(2,'French Onion Soup',18,'https://images.unsplash.com/photo-1547592180-85f173990554?w=120&q=60')">Quick Add</button>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-stars">★★★★<span class="star empty">★</span></div>
+          <div class="menu-card-name">French Onion Soup</div>
+          <p class="menu-card-desc">Classic caramelised onion broth topped with gruyère crouton and fresh herbs.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">$18</span>
+            <button class="add-to-cart-btn" onclick="addToCart(2,'French Onion Soup',18,'https://images.unsplash.com/photo-1547592180-85f173990554?w=120&q=60')" aria-label="Add to cart"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card reveal reveal-delay-2" data-category="starters">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1505575967455-40e256f73376?w=500&q=75&auto=format&fit=crop" alt="Burrata & Heirloom Tomato" loading="lazy" />
+          <div class="menu-card-overlay">
+            <button class="quick-add" onclick="addToCart(3,'Burrata & Heirloom Tomato',22,'https://images.unsplash.com/photo-1505575967455-40e256f73376?w=120&q=60')">Quick Add</button>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-stars">★★★★★</div>
+          <div class="menu-card-name">Burrata & Heirloom Tomato</div>
+          <p class="menu-card-desc">Creamy burrata, heritage tomatoes, basil oil, aged balsamic and sea salt.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">$22</span>
+            <button class="add-to-cart-btn" onclick="addToCart(3,'Burrata & Heirloom Tomato',22,'https://images.unsplash.com/photo-1505575967455-40e256f73376?w=120&q=60')" aria-label="Add to cart"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="starters">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=500&q=75&auto=format&fit=crop" alt="Scallop Crudo" loading="lazy" />
+          <div class="menu-card-overlay">
+            <button class="quick-add" onclick="addToCart(4,'Scallop Crudo',28,'https://images.unsplash.com/photo-1559847844-5315695dadae?w=120&q=60')">Quick Add</button>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-stars">★★★★★</div>
+          <div class="menu-card-name">Scallop Crudo</div>
+          <p class="menu-card-desc">Hand-dived scallops, yuzu leche de tigre, cucumber, jalapeño & micro cilantro.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">$28</span>
+            <button class="add-to-cart-btn" onclick="addToCart(4,'Scallop Crudo',28,'https://images.unsplash.com/photo-1559847844-5315695dadae?w=120&q=60')" aria-label="Add to cart"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAINS -->
+      <div class="menu-card reveal" data-category="mains">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=500&q=75&auto=format&fit=crop" alt="Wagyu Ribeye" loading="lazy" />
+          <div class="menu-card-overlay">
+            <button class="quick-add" onclick="addToCart(5,'Wagyu Ribeye',120,'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=120&q=60')">Quick Add</button>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-stars">★★★★★</div>
+          <div class="menu-card-name">Wagyu Ribeye A5</div>
+          <p class="menu-card-desc">Japanese A5 Wagyu, roasted bone marrow butter, pomme purée and seasonal truffle.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">$120</span>
+            <button class="add-to-cart-btn" onclick="addToCart(5,'Wagyu Ribeye',120,'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=120&q=60')" aria-label="Add to cart"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card reveal reveal-delay-1" data-category="mains">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=500&q=75&auto=format&fit=crop" alt="Pan-Roasted Salmon" loading="lazy" />
+          <div class="menu-card-overlay">
+            <button class="quick-add" onclick="addToCart(6,'Pan-Roasted Salmon',52,'https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=120&q=60')">Quick Add</button>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-stars">★★★★<span class="star empty">★</span></div>
+          <div class="menu-card-name">Pan-Roasted Salmon</div>
+          <p class="menu-card-desc">Atlantic salmon, champagne beurre blanc, pea purée, asparagus and caviar.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">$52</span>
+            <button class="add-to-cart-btn" onclick="addToCart(6,'Pan-Roasted Salmon',52,'https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=120&q=60')" aria-label="Add to cart"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card reveal reveal-delay-2" data-category="mains">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=75&auto=format&fit=crop" alt="Rack of Lamb" loading="lazy" />
+          <div class="menu-card-overlay">
+            <button class="quick-add" onclick="addToCart(7,'Rack of Lamb',75,'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=120&q=60')">Quick Add</button>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-stars">★★★★★</div>
+          <div class="menu-card-name">Rack of Lamb</div>
+          <p class="menu-card-desc">Herb-crusted Colorado lamb, pommes dauphinoise, ratatouille and rosemary jus.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">$75</span>
+            <button class="add-to-cart-btn" onclick="addToCart(7,'Rack of Lamb',75,'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=120&q=60')" aria-label="Add to cart"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card reveal" data-category="mains">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=500&q=75&auto=format&fit=crop" alt="Truffle Risotto" loading="lazy" />
+          <div class="menu-card-overlay">
+            <button class="quick-add" onclick="addToCart(8,'Black Truffle Risotto',48,'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=120&q=60')">Quick Add</button>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-stars">★★★★★</div>
+          <div class="menu-card-name">Black Truffle Risotto</div>
+          <p class="menu-card-desc">Carnaroli rice, Périgord black truffle, aged Parmigiano-Reggiano and white wine.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">$48</span>
+            <button class="add-to-cart-btn" onclick="addToCart(8,'Black Truffle Risotto',48,'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=120&q=60')" aria-label="Add to cart"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESSERTS -->
+      <div class="menu-card reveal" data-category="desserts">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=500&q=75&auto=format&fit=crop" alt="Crème Brûlée" loading="lazy" />
+          <div class="menu-card-overlay">
+            <button class="quick-add" onclick="addToCart(9,'Crème Brûlée',18,'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=120&q=60')">Quick Add</button>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-stars">★★★★★</div>
+          <div class="menu-card-name">Crème Brûlée</div>
+          <p class="menu-card-desc">Tahitian vanilla custard, caramelised sugar crust, seasonal berry compote.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">$18</span>
+            <button class="add-to-cart-btn" onclick="addToCart(9,'Crème Brûlée',18,'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=120&q=60')" aria-label="Add to cart"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card reveal reveal-delay-1" data-category="desserts">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500&q=75&auto=format&fit=crop" alt="Tarte Tatin" loading="lazy" />
+          <div class="menu-card-overlay">
+            <button class="quick-add" onclick="addToCart(10,'Tarte Tatin',22,'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=120&q=60')">Quick Add</button>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-stars">★★★★<span class="star empty">★</span></div>
+          <div class="menu-card-name">Tarte Tatin</div>
+          <p class="menu-card-desc">Caramelised Granny Smith apple, puff pastry, crème fraîche and calvados caramel.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">$22</span>
+            <button class="add-to-cart-btn" onclick="addToCart(10,'Tarte Tatin',22,'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=120&q=60')" aria-label="Add to cart"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card reveal reveal-delay-2" data-category="desserts">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=500&q=75&auto=format&fit=crop" alt="Mango Panna Cotta" loading="lazy" />
+          <div class="menu-card-overlay">
+            <button class="quick-add" onclick="addToCart(11,'Mango Panna Cotta',19,'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=120&q=60')">Quick Add</button>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-stars">★★★★★</div>
+          <div class="menu-card-name">Mango Panna Cotta</div>
+          <p class="menu-card-desc">Silken Italian panna cotta, Alphonso mango coulis, passionfruit and mint.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">$19</span>
+            <button class="add-to-cart-btn" onclick="addToCart(11,'Mango Panna Cotta',19,'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=120&q=60')" aria-label="Add to cart"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /menu-grid -->
+  </div>
+</section>
+
+<!-- ══════════════════ RESERVATION ══════════════════ -->
+<section id="reservation">
+  <div class="section">
+    <div class="reservation-grid">
+      <!-- Info Side -->
+      <div>
+        <span class="section-label reveal">Make a Reservation</span>
+        <h2 class="section-title reveal">Reserve Your <span>Table</span></h2>
+        <div class="divider reveal"></div>
+
+        <div class="reservation-info reveal reveal-delay-1">
+          <h3>Join Us for an Unforgettable Evening</h3>
+          <p>Whether it's an intimate dinner for two or a grand celebration, we'll craft a personalised experience to exceed every expectation.</p>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <h4>Address</h4>
+              <p>12 Regent Street, Mayfair<br>London, W1B 5LT, United Kingdom</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+            <div>
+              <h4>Phone</h4>
+              <p>+92 330 4344535<br>immadshahzad@royalfeast.com</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <h4>Hours</h4>
+              <p>Mon – Thu: 6:00 PM – 10:30 PM<br>Fri – Sat: 5:30 PM – 11:00 PM<br>Sunday: Closed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Side -->
+      <div class="reveal reveal-delay-2">
+        <div class="reservation-form">
+          <h3><span></span> Book a Table</h3>
+
+          <form id="reservation-form" novalidate autocomplete="off">
+            <div class="form-grid">
+
+              <div class="field">
+                <label for="res-name"><i class="fas fa-user"></i> Full Name</label>
+                <input type="text" id="res-name" placeholder="Immad Shahzad" />
+                <span class="error-msg" id="err-name"><i class="fas fa-exclamation-circle"></i> Please enter your name (min 2 chars)</span>
+              </div>
+
+              <div class="field">
+                <label for="res-email"><i class="fas fa-envelope"></i> Email Address</label>
+                <input type="email" id="res-email" placeholder="hello@example.com" />
+                <span class="error-msg" id="err-email"><i class="fas fa-exclamation-circle"></i> Please enter a valid email</span>
+              </div>
+
+              <div class="field">
+                <label for="res-date"><i class="fas fa-calendar-alt"></i> Preferred Date</label>
+                <input type="date" id="res-date" />
+                <span class="error-msg" id="err-date"><i class="fas fa-exclamation-circle"></i> Please select a future date</span>
+              </div>
+
+              <div class="field">
+                <label for="res-time"><i class="fas fa-clock"></i> Preferred Time</label>
+                <select id="res-time">
+                  <option value="">Select a time</option>
+                  <option value="17:30">5:30 PM</option>
+                  <option value="18:00">6:00 PM</option>
+                  <option value="18:30">6:30 PM</option>
+                  <option value="19:00">7:00 PM</option>
+                  <option value="19:30">7:30 PM</option>
+                  <option value="20:00">8:00 PM</option>
+                  <option value="20:30">8:30 PM</option>
+                  <option value="21:00">9:00 PM</option>
+                  <option value="21:30">9:30 PM</option>
+                </select>
+                <span class="error-msg" id="err-time"><i class="fas fa-exclamation-circle"></i> Please select a time</span>
+              </div>
+
+              <div class="field full">
+                <label for="res-message"><i class="fas fa-comment-alt"></i> Special Requests</label>
+                <textarea id="res-message" placeholder="Dietary requirements, special occasions, table preferences..."></textarea>
+                <span class="error-msg" id="err-message"><i class="fas fa-exclamation-circle"></i> Please write at least 10 characters</span>
+              </div>
+
+            </div>
+            <button type="submit" class="btn-gold form-submit">
+              <i class="fas fa-calendar-check"></i> Confirm Reservation
+            </button>
+          </form>
+
+          <!-- Success State -->
+          <div class="form-success" id="form-success">
+            <div class="success-icon"><i class="fas fa-check"></i></div>
+            <h4>Reservation Confirmed!</h4>
+            <p>Thank you! We've received your request and will send a confirmation to your email shortly.</p>
+            <a href="#menu" class="btn-gold" style="margin-top:8px;">Explore Our Menu</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ LOCATION ══════════════════ -->
+<section id="location">
+  <div class="section">
+    <div class="section-header reveal" style="margin-bottom:48px;">
+      <span class="section-label">Find Us</span>
+      <h2 class="section-title">Our <span>Location</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="location-grid">
+      <!-- Info Card -->
+      <div class="location-card reveal">
+        <h3><i class="fas fa-map-marker-alt"></i> Visit Royal Feast</h3>
+
+        <div class="location-detail">
+          <div class="loc-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="loc-text">
+            <h4>Address</h4>
+            <p>12 Regent Street, Mayfair<br>London, W1B 5LT<br>United Kingdom</p>
+          </div>
+        </div>
+
+        <div class="location-detail">
+          <div class="loc-icon"><i class="fas fa-phone-alt"></i></div>
+          <div class="loc-text">
+            <h4>Phone & Email</h4>
+            <p>+92 330 4344535<br>immadshahzad@royalfeast.com</p>
+          </div>
+        </div>
+
+        <div class="location-detail">
+          <div class="loc-icon"><i class="fas fa-clock"></i></div>
+          <div class="loc-text">
+            <h4>Opening Hours</h4>
+            <p>
+              Mon – Thu: 6:00 PM – 10:30 PM<br>
+              Fri – Sat: 5:30 PM – 11:00 PM<br>
+              <span style="color:var(--gold);">Sunday: Closed</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="location-detail">
+          <div class="loc-icon"><i class="fas fa-subway"></i></div>
+          <div class="loc-text">
+            <h4>Nearest Tube</h4>
+            <p>Piccadilly Circus (3 min walk)<br>Oxford Circus (5 min walk)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="map-wrap reveal reveal-delay-1">
+        <iframe
+          title="Royal Feast Location — Regent Street, London"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.0791994986547!2d-0.1397!3d51.5099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604d577a0c991%3A0x23310e79ccfb7a3!2sRegent%20St%2C%20London!5e0!3m2!1sen!2suk!4v1715000000000!5m2!1sen!2suk"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <div class="footer-main">
+    <!-- Brand -->
+    <div class="footer-brand">
+      <div class="nav-logo" style="margin-bottom:16px;">
+        <span class="nav-logo-main">Royal Feast</span>
+        <span class="nav-logo-sub">Fine Dining</span>
+      </div>
+      <p>An award-winning fine dining destination where culinary artistry meets impeccable hospitality. Join us for an experience that transcends a meal.</p>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-link" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#featured">Chef's Specials</a></li>
+        <li><a href="#menu">Full Menu</a></li>
+        <li><a href="#reservation">Reservations</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+    </div>
+
+    <!-- Menu -->
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <ul>
+        <li><a href="#menu">Starters</a></li>
+        <li><a href="#menu">Main Courses</a></li>
+        <li><a href="#menu">Desserts</a></li>
+        <li><a href="#menu">Wine Pairing</a></li>
+        <li><a href="#menu">Tasting Menu</a></li>
+        <li><a href="#menu">Private Dining</a></li>
+      </ul>
+    </div>
+
+    <!-- Hours -->
+    <div class="footer-col">
+      <h4>Opening Hours</h4>
+      <ul class="footer-hours">
+        <li><span class="day">Mon – Thu</span><span class="time">6PM – 10:30PM</span></li>
+        <li><span class="day">Friday</span><span class="time">5:30PM – 11PM</span></li>
+        <li><span class="day">Saturday</span><span class="time">5:30PM – 11PM</span></li>
+        <li><span class="day">Sunday</span><span class="time" style="color:var(--white-muted);">Closed</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 <span>Royal Feast</span>. All Rights Reserved. Crafted with <span>♥</span> by <span>Immad Shahzad</span></p>
+    <p>Made by <span>Immad Shahzad</span> &nbsp;|&nbsp; +92 330 4344535</p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="js/app.js"></script>
+</body>
+</html>
